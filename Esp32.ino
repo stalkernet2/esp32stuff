@@ -1,7 +1,9 @@
 #include <Arduino.h>
 
 #define VOLTAGE_PIN 25  // Пин для подачи напряжения
-#define GROUND_PIN 26   // Пин для подключения к земле через известный резистор
+
+// Учитывая, что земля общая, следует использовать диоды, иначе во всех входящих пинах будет максимальное значение одного из питающих пинов 
+
 
 #define KNOWN_RESISTOR 10000  // Значение известного резистора в Омах
 
@@ -19,8 +21,6 @@ const int numPins = sizeof(measurePins) / sizeof(measurePins[0]);
 void setup() {
   Serial.begin(115200);
   pinMode(VOLTAGE_PIN, OUTPUT);
-  pinMode(GROUND_PIN, OUTPUT);
-  digitalWrite(GROUND_PIN, LOW);
 
   // Настройка пинов для измерения напряжения
   for (int i = 0; i < numPins; i++)
