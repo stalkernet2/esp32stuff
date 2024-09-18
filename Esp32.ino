@@ -1,7 +1,5 @@
 #include <Arduino.h>
 
-#define VOLTAGE_PIN 25  // Пин для подачи напряжения
-
 // Учитывая, что земля общая, следует использовать диоды, иначе во всех входящих пинах будет максимальное значение одного из питающих пинов 
 
 
@@ -18,22 +16,17 @@ const int measurePins[] = {25, 26, 27, 32, 33, 34, 35, 36};
 // Определяем количество пинов в массиве
 const int numPins = sizeof(measurePins) / sizeof(measurePins[0]);
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
-  pinMode(VOLTAGE_PIN, OUTPUT);
-
+  
   // Настройка пинов для измерения напряжения
   for (int i = 0; i < numPins; i++)
     pinMode(measurePins[i], INPUT);
 }
 
-void loop() {
-  // Подаем напряжение на измеряемые резисторы
-  digitalWrite(VOLTAGE_PIN, HIGH);
-
-  // Ждем немного, чтобы напряжение стабилизировалось
-  delay(10);
-
+void loop() 
+{
   // Измеряем напряжение на каждом пине
   for (int i = 0; i < numPins; i++) 
 {
